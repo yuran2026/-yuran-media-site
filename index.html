@@ -1,11 +1,2395 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <title>余然传媒官网</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#1a4d8c">
+<title>余然科技·门窗定制 | 专业门窗定制服务</title>
+
+<!-- SEO & 分享 -->
+<meta name="description" content="专业门窗定制服务，断桥铝·系统窗·阳光房·推拉门，免费上门量尺，在线自助报价，余然科技出品。">
+<meta name="keywords" content="门窗定制,断桥铝,系统窗,阳光房,推拉门,平开窗,上门量尺,报价">
+<meta property="og:title" content="余然科技·门窗定制">
+<meta property="og:description" content="专业门窗定制，免费上门量尺，在线报价计算器">
+<meta property="og:type" content="website">
+<meta property="og:image" content="icons/icon-512.png">
+
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="余然门窗">
+<meta name="mobile-web-app-capable" content="yes">
+
+<!-- 微信分享优化 -->
+<meta name="format-detection" content="telephone=yes">
+<meta name="full-screen" content="yes">
+<meta name="browsermode" content="application">
+<style>
+/* ===== CSS 变量 & 重置 ===== */
+:root {
+  --primary: #1a4d8c;
+  --primary-light: #2563b0;
+  --primary-dark: #123570;
+  --accent: #e8770c;
+  --accent-light: #f59334;
+  --bg: #f5f7fa;
+  --bg-white: #ffffff;
+  --text-dark: #1a1a2e;
+  --text-mid: #4a4a6a;
+  --text-light: #888aaa;
+  --border: #e0e4ef;
+  --shadow-sm: 0 2px 8px rgba(26,77,140,0.08);
+  --shadow-md: 0 4px 20px rgba(26,77,140,0.12);
+  --shadow-lg: 0 8px 32px rgba(26,77,140,0.16);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --radius-lg: 20px;
+  --transition: 0.25s ease;
+  --header-h: 56px;
+}
+
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", sans-serif;
+  background: var(--bg);
+  color: var(--text-dark);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+button { cursor: pointer; border: none; outline: none; font-family: inherit; }
+input, textarea, select { font-family: inherit; outline: none; border: none; }
+
+/* ===== 滚动条 ===== */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+/* ===== 顶部导航 ===== */
+.nav-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--header-h);
+  background: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  z-index: 1000;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.nav-logo .logo-icon {
+  width: 32px; height: 32px;
+  background: var(--accent);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; font-weight: 900; color: #fff;
+}
+.nav-logo .logo-text {
+  display: flex; flex-direction: column;
+  line-height: 1.2;
+}
+.nav-logo .logo-text .name { font-size: 15px; font-weight: 700; color: #fff; }
+.nav-logo .logo-text .tag { font-size: 11px; color: rgba(255,255,255,0.7); }
+.nav-phone {
+  background: var(--accent);
+  color: #fff;
+  padding: 7px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex; align-items: center; gap: 5px;
+}
+
+/* ===== 底部Tab导航 ===== */
+.tab-bar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: 60px;
+  background: #fff;
+  display: flex;
+  border-top: 1px solid var(--border);
+  z-index: 1000;
+  box-shadow: 0 -2px 16px rgba(26,77,140,0.08);
+}
+.tab-item {
+  flex: 1;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 3px;
+  cursor: pointer;
+  transition: color var(--transition);
+  color: var(--text-light);
+  font-size: 11px;
+  font-weight: 500;
+  position: relative;
+}
+.tab-item.active { color: var(--primary); }
+.tab-item .tab-icon { font-size: 22px; line-height: 1; }
+.tab-item.active::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 24px; height: 2px;
+  background: var(--primary);
+  border-radius: 0 0 2px 2px;
+}
+/* 报价按钮特殊样式 */
+.tab-item.tab-price {
+  position: relative;
+}
+.tab-item.tab-price .tab-icon-wrap {
+  width: 48px; height: 48px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin-top: -20px;
+  box-shadow: 0 4px 12px rgba(232,119,12,0.4);
+  font-size: 22px;
+}
+.tab-item.tab-price .tab-label { color: var(--accent); font-weight: 600; }
+
+/* ===== 页面容器 ===== */
+.page-wrap {
+  padding-top: var(--header-h);
+  padding-bottom: 68px;
+  min-height: 100vh;
+}
+
+/* ===== 页面切换 ===== */
+.page-section {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+.page-section.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ===== 首页 Hero ===== */
+.hero {
+  background: linear-gradient(160deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
+  padding: 28px 20px 32px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  right: -30px; top: -30px;
+  width: 180px; height: 180px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 50%;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  right: 20px; bottom: -20px;
+  width: 100px; height: 100px;
+  background: rgba(232,119,12,0.15);
+  border-radius: 50%;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 12px;
+  margin-bottom: 12px;
+  backdrop-filter: blur(4px);
+}
+.hero h1 {
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.25;
+  margin-bottom: 10px;
+  letter-spacing: -0.5px;
+}
+.hero h1 .accent { color: var(--accent-light); }
+.hero p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.hero-actions {
+  display: flex;
+  gap: 12px;
+}
+.btn-primary {
+  flex: 1;
+  background: var(--accent);
+  color: #fff;
+  padding: 13px 16px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(232,119,12,0.4);
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.btn-primary:active { transform: scale(0.97); box-shadow: 0 2px 8px rgba(232,119,12,0.3); }
+.btn-outline {
+  flex: 1;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.35);
+  color: #fff;
+  padding: 13px 16px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  transition: background var(--transition);
+}
+.btn-outline:active { background: rgba(255,255,255,0.2); }
+
+/* ===== 统计数字 ===== */
+.stats-strip {
+  background: var(--bg-white);
+  margin: 0 16px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  margin-top: -20px;
+  position: relative;
+  z-index: 10;
+  display: flex;
+}
+.stat-item {
+  flex: 1;
+  padding: 16px 10px;
+  text-align: center;
+  border-right: 1px solid var(--border);
+}
+.stat-item:last-child { border-right: none; }
+.stat-num {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--primary);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.stat-num .unit { font-size: 14px; font-weight: 600; }
+.stat-label { font-size: 11px; color: var(--text-light); }
+
+/* ===== 通用 Section ===== */
+.section {
+  padding: 24px 16px;
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.section-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-dark);
+  display: flex; align-items: center; gap: 8px;
+}
+.section-title::before {
+  content: '';
+  width: 4px; height: 18px;
+  background: var(--accent);
+  border-radius: 2px;
+  display: inline-block;
+}
+.section-more {
+  font-size: 13px;
+  color: var(--primary);
+  font-weight: 600;
+  display: flex; align-items: center; gap: 3px;
+}
+
+/* ===== 产品分类卡片 ===== */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.cat-card {
+  background: var(--bg-white);
+  border-radius: var(--radius);
+  padding: 16px 8px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition);
+  border: 2px solid transparent;
+}
+.cat-card:active { transform: scale(0.97); }
+.cat-card.selected {
+  border-color: var(--primary);
+  background: linear-gradient(135deg, rgba(26,77,140,0.06), rgba(26,77,140,0.02));
+}
+.cat-icon {
+  font-size: 30px;
+  margin-bottom: 8px;
+  line-height: 1;
+}
+.cat-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 3px;
+}
+.cat-sub { font-size: 11px; color: var(--text-light); }
+
+/* ===== 产品卡片 ===== */
+.product-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.product-card {
+  background: var(--bg-white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  transition: box-shadow var(--transition);
+}
+.product-card:active { box-shadow: var(--shadow-md); }
+.product-img {
+  width: 110px;
+  min-height: 100px;
+  background: linear-gradient(135deg, var(--bg) 0%, var(--border) 100%);
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 40px;
+  position: relative;
+  overflow: hidden;
+}
+.product-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  position: absolute; top: 0; left: 0;
+}
+.product-info {
+  flex: 1;
+  padding: 14px 14px 14px 14px;
+  display: flex; flex-direction: column;
+  gap: 6px;
+}
+.product-name { font-size: 15px; font-weight: 700; color: var(--text-dark); }
+.product-desc { font-size: 12px; color: var(--text-mid); line-height: 1.5; }
+.product-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.tag {
+  background: rgba(26,77,140,0.08);
+  color: var(--primary);
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.tag.accent-tag {
+  background: rgba(232,119,12,0.1);
+  color: var(--accent);
+}
+.product-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+.price-label { font-size: 11px; color: var(--text-light); }
+.price-value {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--accent);
+}
+.price-unit { font-size: 11px; font-weight: 500; color: var(--text-mid); }
+.btn-calc-small {
+  background: var(--primary);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ===== 首页快捷入口 ===== */
+.quick-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.quick-card {
+  border-radius: var(--radius);
+  padding: 18px 16px;
+  cursor: pointer;
+  transition: transform var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.quick-card:active { transform: scale(0.98); }
+.quick-card.blue {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: #fff;
+}
+.quick-card.orange {
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  color: #fff;
+}
+.quick-card.light-blue {
+  background: linear-gradient(135deg, #eef4ff, #dce9ff);
+  color: var(--primary);
+}
+.quick-card.light-orange {
+  background: linear-gradient(135deg, #fff5ec, #ffe8cc);
+  color: var(--accent);
+}
+.quick-card .qc-icon { font-size: 28px; margin-bottom: 10px; }
+.quick-card .qc-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+.quick-card .qc-sub { font-size: 12px; opacity: 0.75; }
+.quick-card .qc-arrow {
+  position: absolute;
+  right: 14px; bottom: 14px;
+  font-size: 20px;
+  opacity: 0.5;
+}
+/* 蓝橙卡的背景圆圈装饰 */
+.quick-card.blue::after, .quick-card.orange::after {
+  content: '';
+  position: absolute;
+  right: -20px; top: -20px;
+  width: 80px; height: 80px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+}
+
+/* ===== 首页横幅轮播 ===== */
+.banner-wrap {
+  padding: 16px 16px 0;
+}
+.banner-slider {
+  border-radius: var(--radius);
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+  padding: 20px;
+  color: #fff;
+  min-height: 120px;
+  display: flex; flex-direction: column;
+  justify-content: center;
+}
+.banner-title { font-size: 18px; font-weight: 800; margin-bottom: 6px; }
+.banner-desc { font-size: 13px; opacity: 0.8; margin-bottom: 14px; }
+.banner-btn {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: var(--accent);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  width: fit-content;
+}
+.banner-deco {
+  position: absolute;
+  right: 16px; top: 50%;
+  transform: translateY(-50%);
+  font-size: 64px;
+  opacity: 0.15;
+}
+
+/* ===== 报价计算器 ===== */
+.calc-page {
+  background: var(--bg);
+}
+.calc-hero {
+  background: linear-gradient(160deg, var(--primary-dark), var(--primary));
+  padding: 24px 20px;
+  color: #fff;
+  text-align: center;
+}
+.calc-hero h2 { font-size: 20px; font-weight: 800; margin-bottom: 6px; }
+.calc-hero p { font-size: 13px; opacity: 0.8; }
+.calc-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  padding: 3px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.calc-card {
+  background: var(--bg-white);
+  margin: 16px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+.calc-section-title {
+  background: linear-gradient(135deg, var(--bg), var(--border));
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primary);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 6px;
+}
+.form-group {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.form-group:last-child { border-bottom: none; }
+.form-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+  display: flex; align-items: center; gap: 5px;
+}
+.form-label .required { color: #e74c3c; font-size: 14px; }
+.form-label .hint {
+  font-size: 11px;
+  color: var(--text-light);
+  font-weight: 400;
+}
+
+/* 选项按钮组 */
+.option-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.opt-btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  background: var(--bg);
+  color: var(--text-mid);
+  border: 1px solid var(--border);
+  transition: all var(--transition);
+  cursor: pointer;
+}
+.opt-btn.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+  box-shadow: 0 2px 8px rgba(26,77,140,0.25);
+}
+.opt-btn.accent-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 2px 8px rgba(232,119,12,0.25);
+}
+
+/* 数字输入 */
+.num-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  padding: 4px 12px;
+  border: 1px solid var(--border);
+}
+.num-btn {
+  width: 32px; height: 32px;
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 18px;
+  color: var(--primary);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background var(--transition);
+  user-select: none;
+}
+.num-btn:active { background: var(--border); }
+.num-input {
+  flex: 1;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-dark);
+  background: transparent;
+  width: 60px;
+}
+.num-unit {
+  font-size: 13px;
+  color: var(--text-light);
+  white-space: nowrap;
+}
+
+/* 滑块 */
+.slider-wrap {
+  padding: 4px 0;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 2px 6px rgba(26,77,140,0.3);
+  cursor: pointer;
+}
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--text-light);
+}
+
+/* ===== 结果展示 ===== */
+.price-result-card {
+  margin: 0 16px 16px;
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+  border-radius: var(--radius);
+  padding: 20px;
+  color: #fff;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+.price-result-card::after {
+  content: '';
+  position: absolute;
+  right: -20px; bottom: -20px;
+  width: 120px; height: 120px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 50%;
+}
+.prc-label { font-size: 13px; opacity: 0.8; margin-bottom: 6px; }
+.prc-main {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+.prc-symbol { font-size: 20px; font-weight: 700; }
+.prc-value {
+  font-size: 42px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+.prc-note { font-size: 12px; opacity: 0.7; }
+.prc-breakdown {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.prc-item-label { font-size: 11px; opacity: 0.7; margin-bottom: 3px; }
+.prc-item-value { font-size: 14px; font-weight: 700; }
+.prc-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+.prc-btn-save {
+  flex: 1;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #fff;
+  padding: 11px;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+}
+.prc-btn-book {
+  flex: 1;
+  background: var(--accent);
+  color: #fff;
+  padding: 11px;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(232,119,12,0.4);
+}
+
+/* ===== 预约表单 ===== */
+.booking-form {
+  margin: 16px;
+  background: var(--bg-white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+.form-field {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.field-icon {
+  width: 36px; height: 36px;
+  background: rgba(26,77,140,0.08);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.field-body { flex: 1; }
+.field-label {
+  font-size: 12px;
+  color: var(--text-light);
+  margin-bottom: 4px;
+}
+.field-input {
+  width: 100%;
+  font-size: 15px;
+  color: var(--text-dark);
+  background: transparent;
+  border: none;
+}
+.field-input::placeholder { color: #c0c4d0; }
+.field-input:focus { outline: none; }
+textarea.field-input {
+  resize: none;
+  min-height: 72px;
+  line-height: 1.5;
+}
+select.field-input { color: var(--text-dark); }
+select.field-input option { color: var(--text-dark); }
+
+/* 时间选择 */
+.time-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 14px 16px;
+}
+.time-chip {
+  padding: 9px 6px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition);
+  color: var(--text-mid);
+  font-weight: 500;
+}
+.time-chip.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+  font-weight: 700;
+}
+.time-chip .tc-date { font-size: 13px; font-weight: 700; display: block; margin-bottom: 2px; }
+.time-chip .tc-day { font-size: 10px; opacity: 0.8; }
+.time-chip .tc-time { font-size: 11px; margin-top: 2px; }
+
+.submit-btn {
+  display: block;
+  width: calc(100% - 32px);
+  margin: 16px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  color: #fff;
+  padding: 15px;
+  border-radius: var(--radius);
+  font-size: 16px;
+  font-weight: 800;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(232,119,12,0.35);
+  letter-spacing: 0.5px;
+  transition: transform var(--transition), box-shadow var(--transition);
+  cursor: pointer;
+}
+.submit-btn:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 8px rgba(232,119,12,0.25);
+}
+
+.info-bar {
+  margin: 0 16px 16px;
+  background: rgba(26,77,140,0.06);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-mid);
+  line-height: 1.5;
+}
+.info-bar .info-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+/* ===== 案例展示 ===== */
+.case-grid {
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.case-card {
+  border-radius: var(--radius);
+  background: var(--bg-white);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  cursor: pointer;
+}
+.case-img {
+  height: 130px;
+  background: linear-gradient(135deg, #dde8ff, #c5d8ff);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 50px;
+  position: relative;
+  overflow: hidden;
+}
+.case-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  position: absolute; top: 0; left: 0;
+}
+.case-badge {
+  position: absolute;
+  top: 8px; left: 8px;
+  background: var(--primary);
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 700;
+}
+.case-info {
+  padding: 12px;
+}
+.case-title { font-size: 13px; font-weight: 700; color: var(--text-dark); margin-bottom: 4px; }
+.case-meta { font-size: 11px; color: var(--text-light); display: flex; align-items: center; gap: 4px; }
+.case-tags { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 4px; }
+.case-tag {
+  font-size: 10px;
+  background: rgba(26,77,140,0.08);
+  color: var(--primary);
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+/* 案例详情模态 */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  z-index: 2000;
+  align-items: flex-end;
+}
+.modal-overlay.open { display: flex; animation: modalIn 0.3s ease; }
+@keyframes modalIn { from { opacity: 0; } to { opacity: 1; } }
+.modal-sheet {
+  background: var(--bg-white);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  animation: sheetUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes sheetUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+.modal-handle {
+  width: 36px; height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  margin: 14px auto 0;
+}
+.modal-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.modal-title { font-size: 17px; font-weight: 800; }
+.modal-close {
+  width: 32px; height: 32px;
+  background: var(--bg);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  cursor: pointer;
+  color: var(--text-mid);
+}
+.modal-body { padding: 20px; }
+.modal-big-img {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(135deg, #dde8ff, #c5d8ff);
+  border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 72px;
+  margin-bottom: 16px;
+}
+
+/* ===== 我的页面 ===== */
+.mine-header {
+  background: linear-gradient(160deg, var(--primary-dark), var(--primary));
+  padding: 28px 20px 36px;
+  color: #fff;
+}
+.mine-avatar {
+  width: 60px; height: 60px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px;
+  margin-bottom: 10px;
+  border: 2px solid rgba(255,255,255,0.4);
+}
+.mine-name { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+.mine-sub { font-size: 13px; opacity: 0.7; }
+
+.mine-card {
+  background: var(--bg-white);
+  margin: -20px 16px 12px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  position: relative;
+  z-index: 5;
+}
+.mine-menu-item {
+  display: flex;
+  align-items: center;
+  padding: 16px 16px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.mine-menu-item:last-child { border-bottom: none; }
+.mine-menu-item:active { background: var(--bg); }
+.mmi-icon {
+  width: 36px; height: 36px;
+  border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+.mmi-icon.blue-bg { background: rgba(26,77,140,0.1); }
+.mmi-icon.orange-bg { background: rgba(232,119,12,0.1); }
+.mmi-icon.green-bg { background: rgba(16,185,129,0.1); }
+.mmi-icon.purple-bg { background: rgba(124,58,237,0.1); }
+.mmi-text { flex: 1; }
+.mmi-title { font-size: 15px; font-weight: 600; color: var(--text-dark); margin-bottom: 2px; }
+.mmi-sub { font-size: 12px; color: var(--text-light); }
+.mmi-arrow { color: var(--border); font-size: 18px; }
+.mmi-badge {
+  background: var(--accent);
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  margin-right: 8px;
+}
+
+.contact-strip {
+  margin: 0 16px 16px;
+  background: var(--primary);
+  border-radius: var(--radius);
+  padding: 18px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #fff;
+}
+.cs-icon {
+  width: 44px; height: 44px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.cs-title { font-size: 15px; font-weight: 700; margin-bottom: 3px; }
+.cs-phone { font-size: 20px; font-weight: 800; letter-spacing: 0.5px; }
+.cs-btn {
+  margin-left: auto;
+  background: var(--accent);
+  color: #fff;
+  padding: 9px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ===== 服务承诺 ===== */
+.promise-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.promise-card {
+  background: var(--bg-white);
+  border-radius: var(--radius);
+  padding: 16px 14px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.pc-icon { font-size: 24px; flex-shrink: 0; }
+.pc-title { font-size: 13px; font-weight: 700; color: var(--text-dark); margin-bottom: 3px; }
+.pc-desc { font-size: 11px; color: var(--text-light); line-height: 1.4; }
+
+/* ===== 成功弹层 ===== */
+.success-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 3000;
+  align-items: center;
+  justify-content: center;
+}
+.success-modal.open { display: flex; }
+.success-content {
+  background: var(--bg-white);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  width: 80%;
+  max-width: 320px;
+  text-align: center;
+  animation: popIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.success-icon { font-size: 56px; margin-bottom: 16px; }
+.success-title { font-size: 20px; font-weight: 800; color: var(--text-dark); margin-bottom: 8px; }
+.success-desc { font-size: 14px; color: var(--text-mid); line-height: 1.6; margin-bottom: 20px; }
+.success-ok {
+  width: 100%;
+  background: var(--primary);
+  color: #fff;
+  padding: 13px;
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ===== 留资表单 ===== */
+.lead-form-page {
+  padding: 16px;
+}
+.lead-form-card {
+  background: var(--bg-white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+/* ===== 产品详情 ===== */
+.product-detail-header {
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+  padding: 20px;
+  color: #fff;
+  text-align: center;
+}
+.pd-icon { font-size: 64px; margin-bottom: 10px; }
+.pd-name { font-size: 22px; font-weight: 800; margin-bottom: 6px; }
+.pd-desc { font-size: 13px; opacity: 0.8; line-height: 1.5; }
+.specs-table {
+  background: var(--bg-white);
+  margin: 16px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.spec-row {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+}
+.spec-row:last-child { border-bottom: none; }
+.spec-key {
+  width: 40%;
+  padding: 12px 14px;
+  font-size: 13px;
+  color: var(--text-mid);
+  background: var(--bg);
+  border-right: 1px solid var(--border);
+  font-weight: 600;
+}
+.spec-val {
+  flex: 1;
+  padding: 12px 14px;
+  font-size: 13px;
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+/* ===== 子页面返回头 ===== */
+.sub-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  background: var(--bg-white);
+  border-bottom: 1px solid var(--border);
+}
+.sub-back {
+  width: 36px; height: 36px;
+  background: var(--bg);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--text-dark);
+  flex-shrink: 0;
+}
+.sub-title { font-size: 17px; font-weight: 800; flex: 1; text-align: center; }
+.sub-right { width: 36px; }
+
+/* ===== 通用工具 ===== */
+.divider {
+  height: 8px;
+  background: var(--bg);
+}
+.mt8 { margin-top: 8px; }
+.mt12 { margin-top: 12px; }
+.mt16 { margin-top: 16px; }
+.mb16 { margin-bottom: 16px; }
+.p16 { padding: 16px; }
+.text-center { text-align: center; }
+.text-mid { color: var(--text-mid); }
+.text-sm { font-size: 13px; }
+.font-700 { font-weight: 700; }
+.font-800 { font-weight: 800; }
+.flex-center { display: flex; align-items: center; justify-content: center; gap: 8px; }
+.w100 { width: 100%; }
+.accent { color: var(--accent); }
+.primary-color { color: var(--primary); }
+.separator { height: 1px; background: var(--border); margin: 0 16px; }
+
+/* ===== 产品列表页 ===== */
+.products-page .category-tabs {
+  display: flex;
+  overflow-x: auto;
+  padding: 12px 16px;
+  gap: 8px;
+  background: var(--bg-white);
+  border-bottom: 1px solid var(--border);
+  scrollbar-width: none;
+}
+.products-page .category-tabs::-webkit-scrollbar { display: none; }
+.cat-tab {
+  flex-shrink: 0;
+  padding: 7px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  background: var(--bg);
+  color: var(--text-mid);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.cat-tab.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+.product-items {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ===== 浮动客服 ===== */
+.float-service {
+  position: fixed;
+  right: 16px;
+  bottom: 80px;
+  z-index: 900;
+}
+.float-btn {
+  width: 48px; height: 48px;
+  background: var(--primary);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  box-shadow: var(--shadow-lg);
+  cursor: pointer;
+  animation: float 3s ease-in-out infinite;
+  color: #fff;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 360px) {
+  .hero h1 { font-size: 22px; }
+  .category-grid { grid-template-columns: repeat(3, 1fr); }
+  .cat-icon { font-size: 24px; }
+  .cat-name { font-size: 12px; }
+}
+
+/* ===== 加载动画 ===== */
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(160deg, var(--primary-dark), var(--primary));
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  transition: opacity 0.4s ease;
+}
+.loading-logo { font-size: 48px; animation: pulse 1s ease-in-out infinite; }
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+.loading-name { font-size: 24px; font-weight: 800; color: #fff; }
+.loading-sub { font-size: 14px; color: rgba(255,255,255,0.7); }
+.loading-bar {
+  width: 120px; height: 4px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.loading-progress {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  animation: load 1.5s ease forwards;
+}
+@keyframes load {
+  from { width: 0; }
+  to { width: 100%; }
+}
+</style>
 </head>
 <body>
-    <h1>欢迎来到余然传媒 Yuran Media</h1>
-    <p>品牌代运营、短视频推广、全案营销服务</p >
+
+<!-- 加载屏 -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-logo">🏠</div>
+  <div class="loading-name">余然科技·门窗定制</div>
+  <div class="loading-sub">专业品质 · 用心服务</div>
+  <div class="loading-bar"><div class="loading-progress"></div></div>
+</div>
+
+<!-- 顶部导航 -->
+<div class="nav-bar">
+  <div class="nav-logo">
+    <div class="logo-icon">余</div>
+    <div class="logo-text">
+      <span class="name">余然科技·门窗定制</span>
+      <span class="tag">断桥铝 · 系统窗 · 阳光房</span>
+    </div>
+  </div>
+  <a href="tel:400-888-9999" class="nav-phone">📞 咨询</a>
+</div>
+
+<!-- 页面内容区 -->
+<div class="page-wrap">
+
+  <!-- ========== 首页 ========== -->
+  <div class="page-section active" id="page-home">
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero-badge">⭐ 十年品质 · 万家选择</div>
+      <h1>专业定制<br><span class="accent">门窗·阳光房</span><br>让家更温暖</h1>
+      <p>断桥铝 / 系统窗 / 推拉门 / 阳光房<br>上门量尺 · 免费设计 · 专业安装</p>
+      <div class="hero-actions">
+        <div class="btn-primary" onclick="showPage('booking')">📅 免费预约量尺</div>
+        <div class="btn-outline" onclick="showPage('calc')">💰 自助报价</div>
+      </div>
+    </div>
+
+    <!-- 统计数字 -->
+    <div class="stats-strip">
+      <div class="stat-item">
+        <div class="stat-num">10<span class="unit">年+</span></div>
+        <div class="stat-label">行业经验</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3000<span class="unit">+</span></div>
+        <div class="stat-label">服务家庭</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">98<span class="unit">%</span></div>
+        <div class="stat-label">好评率</div>
+      </div>
+    </div>
+
+    <!-- 产品分类 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">产品分类</div>
+        <div class="section-more" onclick="showPage('products')">查看全部 ›</div>
+      </div>
+      <div class="category-grid">
+        <div class="cat-card" onclick="showProductsByCategory('断桥铝')">
+          <div class="cat-icon">🪟</div>
+          <div class="cat-name">断桥铝</div>
+          <div class="cat-sub">隔热隔音</div>
+        </div>
+        <div class="cat-card" onclick="showProductsByCategory('系统窗')">
+          <div class="cat-icon">🏗️</div>
+          <div class="cat-name">系统窗</div>
+          <div class="cat-sub">高端定制</div>
+        </div>
+        <div class="cat-card" onclick="showProductsByCategory('阳光房')">
+          <div class="cat-icon">☀️</div>
+          <div class="cat-name">阳光房</div>
+          <div class="cat-sub">采光享受</div>
+        </div>
+        <div class="cat-card" onclick="showProductsByCategory('推拉门')">
+          <div class="cat-icon">🚪</div>
+          <div class="cat-name">推拉门</div>
+          <div class="cat-sub">空间分隔</div>
+        </div>
+        <div class="cat-card" onclick="showProductsByCategory('平开窗')">
+          <div class="cat-icon">🔲</div>
+          <div class="cat-name">平开窗</div>
+          <div class="cat-sub">经典耐用</div>
+        </div>
+        <div class="cat-card" onclick="showPage('calc')">
+          <div class="cat-icon">🧮</div>
+          <div class="cat-name">快速报价</div>
+          <div class="cat-sub">立即算价</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 快捷功能 -->
+    <div class="section" style="padding-top:0">
+      <div class="section-header">
+        <div class="section-title">快捷服务</div>
+      </div>
+      <div class="quick-grid">
+        <div class="quick-card blue" onclick="showPage('booking')">
+          <div class="qc-icon">📐</div>
+          <div class="qc-title">预约量尺</div>
+          <div class="qc-sub">免费上门测量</div>
+          <div class="qc-arrow">›</div>
+        </div>
+        <div class="quick-card orange" onclick="showPage('calc')">
+          <div class="qc-icon">💰</div>
+          <div class="qc-title">型材报价</div>
+          <div class="qc-sub">秒出参考价格</div>
+          <div class="qc-arrow">›</div>
+        </div>
+        <div class="quick-card light-blue" onclick="showPage('cases')">
+          <div class="qc-icon">🖼️</div>
+          <div class="qc-title">安装案例</div>
+          <div class="qc-sub">真实效果展示</div>
+          <div class="qc-arrow">›</div>
+        </div>
+        <div class="quick-card light-orange" onclick="showLeadForm()">
+          <div class="qc-icon">📝</div>
+          <div class="qc-title">留下需求</div>
+          <div class="qc-sub">专人回电跟进</div>
+          <div class="qc-arrow">›</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 服务承诺 -->
+    <div class="section" style="padding-top:0">
+      <div class="section-header">
+        <div class="section-title">服务承诺</div>
+      </div>
+      <div class="promise-grid">
+        <div class="promise-card">
+          <div class="pc-icon">🆓</div>
+          <div>
+            <div class="pc-title">免费量尺</div>
+            <div class="pc-desc">专业设计师上门测量，出具方案</div>
+          </div>
+        </div>
+        <div class="promise-card">
+          <div class="pc-icon">🔧</div>
+          <div>
+            <div class="pc-title">专业安装</div>
+            <div class="pc-desc">持证工人，施工整洁，一次完成</div>
+          </div>
+        </div>
+        <div class="promise-card">
+          <div class="pc-icon">🛡️</div>
+          <div>
+            <div class="pc-title">5年保修</div>
+            <div class="pc-desc">产品质保5年，终身维护服务</div>
+          </div>
+        </div>
+        <div class="promise-card">
+          <div class="pc-icon">💎</div>
+          <div>
+            <div class="pc-title">正品保障</div>
+            <div class="pc-desc">品牌原装材料，假一赔十</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 热门产品预览 -->
+    <div class="section" style="padding-top:0">
+      <div class="section-header">
+        <div class="section-title">热销产品</div>
+        <div class="section-more" onclick="showPage('products')">全部 ›</div>
+      </div>
+      <div class="product-list" id="homeProductList"></div>
+    </div>
+
+    <!-- 案例预览 -->
+    <div class="section" style="padding-top:0">
+      <div class="section-header">
+        <div class="section-title">精选案例</div>
+        <div class="section-more" onclick="showPage('cases')">更多 ›</div>
+      </div>
+      <div class="case-grid" id="homeCaseGrid"></div>
+    </div>
+
+  </div><!-- /page-home -->
+
+  <!-- ========== 产品列表页 ========== -->
+  <div class="page-section products-page" id="page-products">
+    <div class="sub-header">
+      <div class="sub-back" onclick="showPage('home')">‹</div>
+      <div class="sub-title">全部产品</div>
+      <div class="sub-right"></div>
+    </div>
+    <div class="category-tabs" id="productCategoryTabs"></div>
+    <div class="product-items" id="productItemsList"></div>
+  </div>
+
+  <!-- ========== 产品详情页 ========== -->
+  <div class="page-section" id="page-product-detail">
+    <div class="sub-header">
+      <div class="sub-back" onclick="showPage('products')">‹</div>
+      <div class="sub-title" id="detailProductName">产品详情</div>
+      <div class="sub-right"></div>
+    </div>
+    <div id="productDetailContent"></div>
+  </div>
+
+  <!-- ========== 报价计算器页 ========== -->
+  <div class="page-section calc-page" id="page-calc">
+    <div class="calc-hero">
+      <div class="calc-badge">★ 核心功能</div>
+      <h2>型材在线报价计算器</h2>
+      <p>选择型材参数，即时获取参考报价<br>告别口头估价，数字一目了然</p>
+    </div>
+
+    <!-- 第一步：选产品类型 -->
+    <div class="calc-card">
+      <div class="calc-section-title">① 选择产品类型</div>
+      <div class="form-group">
+        <div class="form-label">产品类别 <span class="required">*</span></div>
+        <div class="option-group" id="calcProductType">
+          <div class="opt-btn active" data-type="window" onclick="selectCalcOption(this,'type')">窗户</div>
+          <div class="opt-btn" data-type="door" onclick="selectCalcOption(this,'type')">推拉门/折叠门</div>
+          <div class="opt-btn" data-type="sunshine" onclick="selectCalcOption(this,'type')">阳光房</div>
+        </div>
+      </div>
+      <div class="form-group" id="calcProfileGroup">
+        <div class="form-label">型材系列 <span class="required">*</span></div>
+        <div class="option-group" id="calcProfileType">
+          <div class="opt-btn active" data-series="55" onclick="selectCalcOption(this,'series')">55系断桥铝</div>
+          <div class="opt-btn" data-series="60" onclick="selectCalcOption(this,'series')">60系断桥铝</div>
+          <div class="opt-btn" data-series="70" onclick="selectCalcOption(this,'series')">70系系统窗</div>
+          <div class="opt-btn" data-series="80" onclick="selectCalcOption(this,'series')">80系系统窗</div>
+          <div class="opt-btn" data-series="aluminium" onclick="selectCalcOption(this,'series')">铝合金门</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 第二步：玻璃选配 -->
+    <div class="calc-card">
+      <div class="calc-section-title">② 玻璃配置</div>
+      <div class="form-group">
+        <div class="form-label">玻璃类型</div>
+        <div class="option-group" id="calcGlass">
+          <div class="opt-btn active" data-glass="single" onclick="selectCalcOption(this,'glass')">单层普通玻璃</div>
+          <div class="opt-btn" data-glass="double" onclick="selectCalcOption(this,'glass')">双层中空玻璃</div>
+          <div class="opt-btn" data-glass="triple" onclick="selectCalcOption(this,'glass')">三玻两腔</div>
+          <div class="opt-btn accent-btn" data-glass="lowE" onclick="selectCalcOption(this,'glass')">Low-E镀膜</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label">是否有隔音夹胶</div>
+        <div class="option-group" id="calcSound">
+          <div class="opt-btn active" data-sound="no" onclick="selectCalcOption(this,'sound')">普通</div>
+          <div class="opt-btn" data-sound="yes" onclick="selectCalcOption(this,'sound')">+隔音夹胶（+¥80/㎡）</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 第三步：尺寸 -->
+    <div class="calc-card">
+      <div class="calc-section-title">③ 输入尺寸（每樘）</div>
+      <div class="form-group">
+        <div class="form-label">宽度 <span class="hint">（cm，建议测量实际洞口）</span></div>
+        <div class="num-input-wrap">
+          <div class="num-btn" onclick="changeNum('width',-10)">−</div>
+          <input class="num-input" type="number" id="calcWidth" value="150" min="40" max="600" oninput="calcPrice()">
+          <div class="num-btn" onclick="changeNum('width',10)">+</div>
+          <span class="num-unit">cm</span>
+        </div>
+        <div class="slider-wrap mt8">
+          <input type="range" id="widthSlider" min="40" max="600" value="150" step="10" oninput="syncSlider('width')">
+          <div class="slider-labels"><span>40cm</span><span>600cm</span></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label">高度 <span class="hint">（cm）</span></div>
+        <div class="num-input-wrap">
+          <div class="num-btn" onclick="changeNum('height',-10)">−</div>
+          <input class="num-input" type="number" id="calcHeight" value="120" min="40" max="300" oninput="calcPrice()">
+          <div class="num-btn" onclick="changeNum('height',10)">+</div>
+          <span class="num-unit">cm</span>
+        </div>
+        <div class="slider-wrap mt8">
+          <input type="range" id="heightSlider" min="40" max="300" value="120" step="10" oninput="syncSlider('height')">
+          <div class="slider-labels"><span>40cm</span><span>300cm</span></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label">数量</div>
+        <div class="num-input-wrap">
+          <div class="num-btn" onclick="changeNum('count',-1)">−</div>
+          <input class="num-input" type="number" id="calcCount" value="1" min="1" max="50" oninput="calcPrice()">
+          <div class="num-btn" onclick="changeNum('count',1)">+</div>
+          <span class="num-unit">樘</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 附加选项 -->
+    <div class="calc-card">
+      <div class="calc-section-title">④ 附加配置（可选）</div>
+      <div class="form-group">
+        <div class="form-label">安装服务</div>
+        <div class="option-group" id="calcInstall">
+          <div class="opt-btn active" data-install="no" onclick="selectCalcOption(this,'install')">仅供货</div>
+          <div class="opt-btn" data-install="yes" onclick="selectCalcOption(this,'install')">含安装（+¥200/樘）</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label">纱窗</div>
+        <div class="option-group" id="calcScreen">
+          <div class="opt-btn active" data-screen="no" onclick="selectCalcOption(this,'screen')">不要纱窗</div>
+          <div class="opt-btn" data-screen="yes" onclick="selectCalcOption(this,'screen')">+金刚网纱窗（+¥50/㎡）</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 报价结果 -->
+    <div class="price-result-card" id="priceResult">
+      <div class="prc-label">💰 实时参考报价</div>
+      <div class="prc-main">
+        <div class="prc-symbol">¥</div>
+        <div class="prc-value" id="totalPrice">--</div>
+      </div>
+      <div class="prc-note" id="priceNote">* 以上为参考价，实际价格以上门量尺后报价为准</div>
+      <div class="prc-breakdown">
+        <div>
+          <div class="prc-item-label">面积</div>
+          <div class="prc-item-value" id="priceSqm">-- ㎡</div>
+        </div>
+        <div>
+          <div class="prc-item-label">单价</div>
+          <div class="prc-item-value" id="priceUnit">¥--/㎡</div>
+        </div>
+        <div>
+          <div class="prc-item-label">型材</div>
+          <div class="prc-item-value" id="priceProfile">--</div>
+        </div>
+        <div>
+          <div class="prc-item-label">含安装</div>
+          <div class="prc-item-value" id="priceInstall">否</div>
+        </div>
+      </div>
+      <div class="prc-actions">
+        <div class="prc-btn-save" onclick="showLeadFormFromCalc()">📋 保存报价</div>
+        <div class="prc-btn-book" onclick="showPage('booking')">📅 预约量尺</div>
+      </div>
+    </div>
+
+    <div class="info-bar">
+      <span class="info-icon">ℹ️</span>
+      <span>报价仅供参考，实际价格因材料品牌、工艺精度、现场条件等因素有所差异。预约专业设计师上门，获取精准报价。</span>
+    </div>
+
+  </div><!-- /page-calc -->
+
+  <!-- ========== 预约量尺页 ========== -->
+  <div class="page-section" id="page-booking">
+    <div class="sub-header">
+      <div class="sub-back" onclick="showPage('home')">‹</div>
+      <div class="sub-title">预约上门量尺</div>
+      <div class="sub-right"></div>
+    </div>
+
+    <div class="info-bar" style="margin:12px 16px 0">
+      <span class="info-icon">✅</span>
+      <span>免费上门量尺 · 专业设计师服务 · 24小时内回电确认</span>
+    </div>
+
+    <!-- 联系信息 -->
+    <div class="booking-form">
+      <div class="calc-section-title">👤 联系信息</div>
+      <div class="form-field">
+        <div class="field-icon">👤</div>
+        <div class="field-body">
+          <div class="field-label">您的姓名</div>
+          <input class="field-input" type="text" id="bookName" placeholder="请输入称呼（如：张先生）">
+        </div>
+      </div>
+      <div class="form-field">
+        <div class="field-icon">📱</div>
+        <div class="field-body">
+          <div class="field-label">联系电话</div>
+          <input class="field-input" type="tel" id="bookPhone" placeholder="请输入手机号码" maxlength="11">
+        </div>
+      </div>
+      <div class="form-field">
+        <div class="field-icon">📍</div>
+        <div class="field-body">
+          <div class="field-label">上门地址</div>
+          <input class="field-input" type="text" id="bookAddr" placeholder="请输入详细地址（小区名+楼栋+门牌）">
+        </div>
+      </div>
+    </div>
+
+    <!-- 需求描述 -->
+    <div class="booking-form" style="margin-top:12px">
+      <div class="calc-section-title">📋 需求描述</div>
+      <div class="form-field">
+        <div class="field-icon">🏠</div>
+        <div class="field-body">
+          <div class="field-label">需求类型</div>
+          <select class="field-input" id="bookType">
+            <option value="">请选择</option>
+            <option>新房安装门窗</option>
+            <option>老窗更换/翻新</option>
+            <option>阳台封窗</option>
+            <option>阳光房建造</option>
+            <option>推拉门定制</option>
+            <option>其他</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-field">
+        <div class="field-icon">💬</div>
+        <div class="field-body">
+          <div class="field-label">备注说明（可选）</div>
+          <textarea class="field-input" id="bookRemark" placeholder="如：需要几扇窗、有特殊造型要求等"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- 预约时间 -->
+    <div class="booking-form" style="margin-top:12px">
+      <div class="calc-section-title">🗓️ 选择预约时间</div>
+      <div id="timeSlotGrid" class="time-grid"></div>
+    </div>
+
+    <button class="submit-btn" onclick="submitBooking()">✅ 立即提交预约</button>
+
+    <div class="info-bar">
+      <span class="info-icon">🔒</span>
+      <span>您的个人信息将严格保密，仅用于预约服务。提交后24小时内将有专属设计师回电确认上门时间。</span>
+    </div>
+  </div><!-- /page-booking -->
+
+  <!-- ========== 案例展示页 ========== -->
+  <div class="page-section" id="page-cases">
+    <div class="sub-header">
+      <div class="sub-back" onclick="showPage('home')">‹</div>
+      <div class="sub-title">案例实拍展示</div>
+      <div class="sub-right"></div>
+    </div>
+    <div class="case-grid" id="allCaseGrid" style="padding:16px"></div>
+  </div>
+
+  <!-- ========== 我的页 ========== -->
+  <div class="page-section" id="page-mine">
+    <div class="mine-header">
+      <div class="mine-avatar">👤</div>
+      <div class="mine-name">欢迎来到余然门窗</div>
+      <div class="mine-sub">专注门窗定制服务，值得信赖</div>
+    </div>
+
+    <div class="mine-card">
+      <div class="mine-menu-item" onclick="showPage('booking')">
+        <div class="mmi-icon blue-bg">📅</div>
+        <div class="mmi-text">
+          <div class="mmi-title">预约记录</div>
+          <div class="mmi-sub">查看我的预约情况</div>
+        </div>
+        <div class="mmi-arrow">›</div>
+      </div>
+      <div class="mine-menu-item" onclick="showPage('calc')">
+        <div class="mmi-icon orange-bg">💰</div>
+        <div class="mmi-text">
+          <div class="mmi-title">我的报价单</div>
+          <div class="mmi-sub">查看历史报价记录</div>
+        </div>
+        <span class="mmi-badge">NEW</span>
+        <div class="mmi-arrow">›</div>
+      </div>
+      <div class="mine-menu-item" onclick="showPage('cases')">
+        <div class="mmi-icon green-bg">🖼️</div>
+        <div class="mmi-text">
+          <div class="mmi-title">案例收藏</div>
+          <div class="mmi-sub">我收藏的案例图</div>
+        </div>
+        <div class="mmi-arrow">›</div>
+      </div>
+      <div class="mine-menu-item" onclick="showLeadForm()">
+        <div class="mmi-icon purple-bg">📝</div>
+        <div class="mmi-text">
+          <div class="mmi-title">留下需求</div>
+          <div class="mmi-sub">专人联系，量身定制方案</div>
+        </div>
+        <div class="mmi-arrow">›</div>
+      </div>
+    </div>
+
+    <div class="contact-strip">
+      <div class="cs-icon">📞</div>
+      <div>
+        <div class="cs-title">门店热线</div>
+        <div class="cs-phone">400-888-9999</div>
+      </div>
+      <a href="tel:400-888-9999" class="cs-btn">立即拨打</a>
+    </div>
+
+    <div class="section" style="padding-top:0">
+      <div class="section-header">
+        <div class="section-title">关于我们</div>
+      </div>
+      <div class="promise-grid">
+        <div class="promise-card">
+          <div class="pc-icon">🏭</div>
+          <div>
+            <div class="pc-title">工厂直供</div>
+            <div class="pc-desc">自有生产线，省去中间差价</div>
+          </div>
+        </div>
+        <div class="promise-card">
+          <div class="pc-icon">👷</div>
+          <div>
+            <div class="pc-title">持证团队</div>
+            <div class="pc-desc">施工人员全部持证上岗</div>
+          </div>
+        </div>
+        <div class="promise-card">
+          <div class="pc-icon">📐</div>
+          <div>
+            <div class="pc-title">精准定制</div>
+            <div class="pc-desc">误差±1mm，完美贴合</div>
+          </div>
+        </div>
+        <div class="promise-card">
+          <div class="pc-icon">🌟</div>
+          <div>
+            <div class="pc-title">口碑传承</div>
+            <div class="pc-desc">十年老店，客户推荐</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /page-wrap -->
+
+<!-- 底部Tab -->
+<div class="tab-bar">
+  <div class="tab-item active" id="tab-home" onclick="showPage('home')">
+    <div class="tab-icon">🏠</div>
+    <span>首页</span>
+  </div>
+  <div class="tab-item" id="tab-products" onclick="showPage('products')">
+    <div class="tab-icon">🪟</div>
+    <span>产品</span>
+  </div>
+  <div class="tab-item tab-price" id="tab-calc" onclick="showPage('calc')">
+    <div class="tab-icon-wrap">💰</div>
+    <span class="tab-label">报价</span>
+  </div>
+  <div class="tab-item" id="tab-cases" onclick="showPage('cases')">
+    <div class="tab-icon">🖼️</div>
+    <span>案例</span>
+  </div>
+  <div class="tab-item" id="tab-mine" onclick="showPage('mine')">
+    <div class="tab-icon">👤</div>
+    <span>我的</span>
+  </div>
+</div>
+
+<!-- 浮动客服 -->
+<div class="float-service" id="floatService">
+  <a href="tel:400-888-9999">
+    <div class="float-btn">📞</div>
+  </a>
+</div>
+
+<!-- 案例详情弹层 -->
+<div class="modal-overlay" id="caseModal" onclick="closeCaseModal(event)">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <div class="modal-title" id="caseModalTitle">案例详情</div>
+      <div class="modal-close" onclick="document.getElementById('caseModal').classList.remove('open')">✕</div>
+    </div>
+    <div class="modal-body" id="caseModalBody"></div>
+  </div>
+</div>
+
+<!-- 留资表单弹层 -->
+<div class="modal-overlay" id="leadModal" onclick="closeLeadModal(event)">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <div class="modal-title">留下您的需求</div>
+      <div class="modal-close" onclick="document.getElementById('leadModal').classList.remove('open')">✕</div>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:13px;color:var(--text-mid);margin-bottom:16px;">填写基本信息，专属顾问将在24小时内联系您，为您提供个性化定制方案。</p>
+      <div class="lead-form-card">
+        <div class="form-field">
+          <div class="field-icon">👤</div>
+          <div class="field-body">
+            <div class="field-label">姓名</div>
+            <input class="field-input" type="text" id="leadName" placeholder="请输入您的姓名">
+          </div>
+        </div>
+        <div class="form-field">
+          <div class="field-icon">📱</div>
+          <div class="field-body">
+            <div class="field-label">手机号</div>
+            <input class="field-input" type="tel" id="leadPhone" placeholder="请输入手机号" maxlength="11">
+          </div>
+        </div>
+        <div class="form-field">
+          <div class="field-icon">🏠</div>
+          <div class="field-body">
+            <div class="field-label">需求类型</div>
+            <select class="field-input" id="leadType">
+              <option value="">请选择</option>
+              <option>新房门窗安装</option>
+              <option>旧窗更换翻新</option>
+              <option>阳台封窗</option>
+              <option>阳光房</option>
+              <option>推拉门</option>
+              <option>门店设计咨询</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-field">
+          <div class="field-icon">💬</div>
+          <div class="field-body">
+            <div class="field-label">其他说明（选填）</div>
+            <textarea class="field-input" id="leadRemark" placeholder="如有特殊需求请在此说明" style="min-height:60px;resize:none"></textarea>
+          </div>
+        </div>
+      </div>
+      <button class="submit-btn" style="width:100%;margin:16px 0 0" onclick="submitLead()">提交需求，等待回电</button>
+    </div>
+  </div>
+</div>
+
+<!-- 成功弹层 -->
+<div class="success-modal" id="successModal">
+  <div class="success-content">
+    <div class="success-icon" id="successIcon">🎉</div>
+    <div class="success-title" id="successTitle">提交成功！</div>
+    <div class="success-desc" id="successDesc">感谢您的预约，我们将在24小时内电话确认上门时间。</div>
+    <button class="success-ok" onclick="closeSuccess()">好的，知道了</button>
+  </div>
+</div>
+
+<script>
+// ===== 数据 =====
+const products = [
+  {
+    id: 1, category: '断桥铝', name: '60系断桥铝平开窗', icon: '🪟',
+    desc: '采用高精度铝合金型材，隔热条厚度14mm，隔热效果优异，适合南北通透户型。',
+    tags: ['隔热', '隔音', '经济实惠'], basePrice: 580,
+    specs: [
+      ['型材厚度', '60mm系列'],['断桥隔热条', '14mm PA66尼龙'],
+      ['玻璃配置', '5+9A+5中空（标配）'],['五金品牌', '坚朗/诺托'],
+      ['颜色', '哑光白/香槟金/仿木纹'],['适用场景', '阳台、客厅、卧室'],
+    ]
+  },
+  {
+    id: 2, category: '断桥铝', name: '70系断桥铝推拉窗', icon: '🔲',
+    desc: '大扇推拉窗型，通风面积大，操作轻便，适合通风需求较高的空间。',
+    tags: ['通风', '大扇面', '推拉便捷'], basePrice: 460,
+    specs: [
+      ['型材厚度', '70mm系列'],['轨道', '不锈钢双轨'],
+      ['玻璃', '5+9+5双层中空'],['五金', '三防锁'],
+      ['颜色', '全色系可选'],['适用场景', '厨房、卫生间、书房'],
+    ]
+  },
+  {
+    id: 3, category: '系统窗', name: '80系系统窗（高端）', icon: '🏗️',
+    desc: '德国EPDM三元乙丙密封胶条，整体系统设计，气密性、水密性、隔声性能行业领先。',
+    tags: ['系统工程', '三高性能', '德国工艺'], basePrice: 1200,
+    specs: [
+      ['型材系列', '80系高端系统窗'],['密封胶条', 'EPDM三元乙丙'],
+      ['玻璃', '6+12A+6 Low-E三玻（可选）'],['隔声', '≥40dB'],
+      ['气密性', '8级（最高）'],['水密性', '6级'],
+    ]
+  },
+  {
+    id: 4, category: '系统窗', name: '超大提升推拉门', icon: '🚪',
+    desc: '欧式提升推拉门，开合极顺，密封性强，一推一升之间尽享品质生活。',
+    tags: ['提升推拉', '超大扇面', '豪宅必备'], basePrice: 2200,
+    specs: [
+      ['型材', '重型铝合金框架'],['推拉方式', '下压提升推拉'],
+      ['最大扇面', '高4m×宽2.5m/扇'],['玻璃', '钢化夹胶+Low-E'],
+      ['导轨', '不锈钢重型轨道'],['适合', '客厅大开间、别墅'],
+    ]
+  },
+  {
+    id: 5, category: '阳光房', name: '钢化玻璃阳光房', icon: '☀️',
+    desc: '全铝合金+钢化玻璃顶，可定制角度采光，冬暖夏凉，成为家中第二客厅。',
+    tags: ['阳光采光', '铝合金骨架', '防风防雨'], basePrice: 3500,
+    specs: [
+      ['结构', '铝合金龙骨+钢化玻璃'],['顶部玻璃', '钢化夹胶/阳光板'],
+      ['侧面', '断桥铝平开/推拉窗'],['防水', '德国进口密封胶'],
+      ['最大面积', '理论无限（按需定制）'],['功能', '健身/休闲/书房'],
+    ]
+  },
+  {
+    id: 6, category: '推拉门', name: '极窄边框推拉门', icon: '🚪',
+    desc: '边框仅30mm，大视野穿透感，适合开放式空间或客厅与阳台分隔使用。',
+    tags: ['极窄边框', '通透感强', '现代简约'], basePrice: 1800,
+    specs: [
+      ['边框宽度', '30mm超窄'],['轨道', '嵌入式隐藏轨道'],
+      ['玻璃', '12mm超白钢化'],['五金', '静音滑轮'],
+      ['颜色', '哑光灰/哑光黑/白色'],['适合', '客厅隔断、阳台'],
+    ]
+  },
+  {
+    id: 7, category: '平开窗', name: '内倒内开平开窗', icon: '🔲',
+    desc: '德式内倒内开五金系统，既可通风又可防盗，雨天也可微开换气，安全方便。',
+    tags: ['内倒内开', '防盗安全', '雨天通风'], basePrice: 680,
+    specs: [
+      ['开启方式', '内倒 + 内开双模式'],['五金', '德系内倒内开执手'],
+      ['型材', '60系断桥铝'],['密封', '三道密封胶条'],
+      ['尺寸范围', '宽40-120cm，高60-180cm'],['适合', '卧室通风防盗'],
+    ]
+  },
+  {
+    id: 8, category: '阳光房', name: '铝木复合阳光房', icon: '🌿',
+    desc: '外铝内木，外观与室内家居风格完美融合，高档别墅首选，兼顾美观与耐久。',
+    tags: ['铝木复合', '高档别墅', '与自然融合'], basePrice: 6500,
+    specs: [
+      ['结构', '外铝内木复合型材'],['木材', '芬兰赤松（FSC认证）'],
+      ['密封', '内外双重密封'],['表面', '木纹喷涂+铝合金氧化'],
+      ['防腐', '木材专业防腐处理'],['适合', '高档别墅、休闲空间'],
+    ]
+  },
+];
+
+const cases = [
+  { id:1, title:'现代简约风卧室窗改造', category:'断桥铝', desc:'客户原有普通铝合金窗隔音差，噪音大。更换60系断桥铝平开窗后，隔音性能大幅提升，冬天不结露，节能效果明显。', tags:['断桥铝','卧室','隔音改造'], icon:'🛏️', detail:'施工周期2天，包含拆旧窗、新窗安装、打胶收边。客户反馈安静舒适，推荐给了邻居。' },
+  { id:2, title:'客厅阳台一体化阳光房', category:'阳光房', desc:'南向阳台改造成全玻璃阳光房，冬天可晒太阳，夏天安装遮阳帘，四季皆宜。', tags:['阳光房','阳台封闭','南向'], icon:'☀️', detail:'总面积约15㎡，使用钢化夹胶玻璃顶，侧面为断桥铝推拉窗，通风换气方便。' },
+  { id:3, title:'别墅客厅超大提升推拉门', category:'系统窗', desc:'4.2m宽×2.8m高超大开口，客厅与花园无缝连接，一键推拉，轻松开合，高档大气。', tags:['系统窗','别墅','提升推拉'], icon:'🏠', detail:'采用重型不锈钢轨道，五金配件进口，玻璃选用12+12mm双层钢化，防紫外线。' },
+  { id:4, title:'厨房极窄推拉门分隔', category:'推拉门', desc:'开放式厨房改造，安装极窄边框推拉门作为烹饪区分隔，既保留通透感，又有效防止油烟外溢。', tags:['推拉门','厨房隔断','极窄边框'], icon:'🍳', detail:'边框仅30mm，玻璃通透无色差，餐厅可无障碍观看厨房操作，现代感十足。' },
+  { id:5, title:'新房全屋门窗定制', category:'断桥铝', desc:'130㎡新房全屋门窗统一定制，统一哑光白色调，整洁美观，从设计到安装仅用5天。', tags:['全屋定制','新房','统一风格'], icon:'🏡', detail:'共16扇窗、2扇推拉门，全部使用60系断桥铝，隔热效果显著，业主非常满意。' },
+  { id:6, title:'书房内倒内开防盗窗', category:'平开窗', desc:'书房居高楼，需要通风但也担心安全。安装内倒内开窗后，微开换气完全防盗，下雨也不怕。', tags:['平开窗','防盗','高楼'], icon:'📚', detail:'德系五金配件，内倒角度可调，与建筑整体风格协调。' },
+];
+
+// ===== 页面切换 =====
+let currentPage = 'home';
+const tabMap = { home:'tab-home', products:'tab-products', calc:'tab-calc', cases:'tab-cases', mine:'tab-mine' };
+
+function showPage(pageName) {
+  document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
+  const p = document.getElementById('page-' + pageName);
+  if (p) { p.classList.add('active'); currentPage = pageName; }
+  // 更新tab
+  document.querySelectorAll('.tab-item').forEach(el => el.classList.remove('active'));
+  if (tabMap[pageName]) document.getElementById(tabMap[pageName]).classList.add('active');
+  // 特殊初始化
+  if (pageName === 'calc') calcPrice();
+  if (pageName === 'booking') initTimeSlots();
+  window.scrollTo(0, 0);
+}
+
+function showProductsByCategory(cat) {
+  showPage('products');
+  document.querySelectorAll('.cat-tab').forEach(el => {
+    el.classList.toggle('active', el.dataset.cat === cat || (cat === 'all' && el.dataset.cat === 'all'));
+  });
+  renderProductList(cat);
+}
+
+// ===== 首页产品预览 =====
+function renderHomeProducts() {
+  const hotIds = [1, 3, 5];
+  const list = hotIds.map(id => products.find(p => p.id === id)).filter(Boolean);
+  const el = document.getElementById('homeProductList');
+  el.innerHTML = list.map(p => productCardHTML(p, true)).join('');
+}
+
+function productCardHTML(p, small = false) {
+  return `<div class="product-card" onclick="showProductDetail(${p.id})">
+    <div class="product-img">${p.icon}</div>
+    <div class="product-info">
+      <div class="product-name">${p.name}</div>
+      <div class="product-desc">${p.desc.substring(0,50)}…</div>
+      <div class="product-tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+      <div class="product-price-row">
+        <div><span class="price-label">参考起价 </span><span class="price-value">¥${p.basePrice}</span><span class="price-unit">/㎡起</span></div>
+        <div class="btn-calc-small" onclick="event.stopPropagation();showPage('calc')">算价格</div>
+      </div>
+    </div>
+  </div>`;
+}
+
+// ===== 产品列表页 =====
+function initProductsPage() {
+  const cats = ['全部', ...new Set(products.map(p=>p.category))];
+  const tabsEl = document.getElementById('productCategoryTabs');
+  tabsEl.innerHTML = cats.map((c,i)=>`<div class="cat-tab ${i===0?'active':''}" data-cat="${c}" onclick="switchCatTab(this,'${c}')">${c}</div>`).join('');
+  renderProductList('全部');
+}
+
+function switchCatTab(el, cat) {
+  document.querySelectorAll('.cat-tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  renderProductList(cat);
+}
+
+function renderProductList(cat) {
+  const list = cat === '全部' ? products : products.filter(p=>p.category===cat);
+  document.getElementById('productItemsList').innerHTML = list.map(p=>productCardHTML(p)).join('');
+}
+
+// ===== 产品详情 =====
+function showProductDetail(id) {
+  const p = products.find(x=>x.id===id);
+  if (!p) return;
+  document.getElementById('detailProductName').textContent = p.name;
+  document.getElementById('productDetailContent').innerHTML = `
+    <div class="product-detail-header">
+      <div class="pd-icon">${p.icon}</div>
+      <div class="pd-name">${p.name}</div>
+      <div class="pd-desc">${p.desc}</div>
+    </div>
+    <div class="section">
+      <div class="section-title" style="margin-bottom:12px">产品标签</div>
+      <div class="product-tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+    </div>
+    <div class="section" style="padding-top:0">
+      <div class="section-title" style="margin-bottom:12px">规格参数</div>
+      <div class="specs-table">
+        ${p.specs.map(([k,v])=>`<div class="spec-row"><div class="spec-key">${k}</div><div class="spec-val">${v}</div></div>`).join('')}
+      </div>
+    </div>
+    <div class="section" style="padding-top:0">
+      <div class="section-title" style="margin-bottom:12px">参考价格</div>
+      <div class="price-result-card" style="margin:0">
+        <div class="prc-label">💰 参考起价</div>
+        <div class="prc-main"><div class="prc-symbol">¥</div><div class="prc-value">${p.basePrice}</div></div>
+        <div class="prc-note">元/㎡起，具体以上门量尺报价为准</div>
+        <div class="prc-actions">
+          <div class="prc-btn-save" onclick="showPage('calc')">🧮 自助算价</div>
+          <div class="prc-btn-book" onclick="showPage('booking')">📅 预约量尺</div>
+        </div>
+      </div>
+    </div>
+    <div style="height:16px"></div>
+  `;
+  // 保存来源以便返回
+  document.querySelector('#page-product-detail .sub-back').onclick = () => showPage('products');
+  showPage('product-detail');
+}
+
+// ===== 案例展示 =====
+function renderCases(containerId, maxCount) {
+  const list = maxCount ? cases.slice(0, maxCount) : cases;
+  document.getElementById(containerId).innerHTML = list.map(c=>casCardHTML(c)).join('');
+}
+
+function casCardHTML(c) {
+  return `<div class="case-card" onclick="showCaseDetail(${c.id})">
+    <div class="case-img">
+      <span>${c.icon}</span>
+      <div class="case-badge">${c.category}</div>
+    </div>
+    <div class="case-info">
+      <div class="case-title">${c.title}</div>
+      <div class="case-meta">📍 真实案例实拍</div>
+      <div class="case-tags">${c.tags.map(t=>`<span class="case-tag">${t}</span>`).join('')}</div>
+    </div>
+  </div>`;
+}
+
+function showCaseDetail(id) {
+  const c = cases.find(x=>x.id===id);
+  if (!c) return;
+  document.getElementById('caseModalTitle').textContent = c.title;
+  document.getElementById('caseModalBody').innerHTML = `
+    <div class="modal-big-img">${c.icon}</div>
+    <div class="product-tags" style="margin-bottom:12px">${c.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+    <p style="font-size:14px;color:var(--text-dark);line-height:1.7;margin-bottom:10px">${c.desc}</p>
+    <p style="font-size:13px;color:var(--text-mid);line-height:1.6;margin-bottom:16px">📋 施工详情：${c.detail}</p>
+    <button class="submit-btn" style="width:100%;margin:0" onclick="document.getElementById('caseModal').classList.remove('open');showPage('booking')">我也想要同款，预约量尺 →</button>
+  `;
+  document.getElementById('caseModal').classList.add('open');
+}
+function closeCaseModal(e) {
+  if (e.target === document.getElementById('caseModal')) document.getElementById('caseModal').classList.remove('open');
+}
+
+// ===== 报价计算器 =====
+const priceTable = {
+  series: { '55': 380, '60': 480, '70': 780, '80': 1050, 'aluminium': 320 },
+  glass: { 'single': 0, 'double': 80, 'triple': 180, 'lowE': 150 },
+  sound: { 'no': 0, 'yes': 80 },
+  install: { 'no': 0, 'yes': 200 },
+  screen: { 'no': 0, 'yes': 50 },
+  type: { 'window': 1.0, 'door': 1.1, 'sunshine': 1.25 }
+};
+const seriesLabel = { '55':'55系断桥铝','60':'60系断桥铝','70':'70系系统窗','80':'80系系统窗','aluminium':'铝合金' };
+
+let calcState = { type:'window', series:'55', glass:'single', sound:'no', install:'no', screen:'no' };
+
+function selectCalcOption(el, key) {
+  el.closest('.option-group').querySelectorAll('.opt-btn').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  calcState[key] = el.dataset[key] || el.dataset.series || el.dataset.glass || el.dataset.sound || el.dataset.install || el.dataset.screen || el.dataset.type;
+  // 统一取值
+  const dataKeys = Object.keys(el.dataset);
+  if (dataKeys.length > 0) calcState[key] = el.dataset[dataKeys[0]];
+  calcPrice();
+}
+
+function calcPrice() {
+  const w = parseFloat(document.getElementById('calcWidth').value) || 150;
+  const h = parseFloat(document.getElementById('calcHeight').value) || 120;
+  const n = parseInt(document.getElementById('calcCount').value) || 1;
+  // 同步滑块
+  document.getElementById('widthSlider').value = Math.min(w, 600);
+  document.getElementById('heightSlider').value = Math.min(h, 300);
+
+  const area = (w / 100) * (h / 100);
+  const totalArea = area * n;
+
+  // 读取当前选项
+  const series = document.querySelector('#calcProfileType .opt-btn.active')?.dataset.series || '55';
+  const glass = document.querySelector('#calcGlass .opt-btn.active')?.dataset.glass || 'single';
+  const sound = document.querySelector('#calcSound .opt-btn.active')?.dataset.sound || 'no';
+  const type = document.querySelector('#calcProductType .opt-btn.active')?.dataset.type || 'window';
+  const install = document.querySelector('#calcInstall .opt-btn.active')?.dataset.install || 'no';
+  const screen = document.querySelector('#calcScreen .opt-btn.active')?.dataset.screen || 'no';
+
+  const basePerSqm = priceTable.series[series];
+  const glassAdd = priceTable.glass[glass];
+  const soundAdd = priceTable.sound[sound];
+  const screenAdd = priceTable.screen[screen];
+  const typeMultiplier = priceTable.type[type];
+  const installAdd = priceTable.install[install] * n;
+
+  const pricePerSqm = Math.round((basePerSqm + glassAdd + soundAdd + screenAdd) * typeMultiplier);
+  let total = Math.round(pricePerSqm * totalArea + installAdd);
+
+  // 最低起价
+  if (total < 200) total = 200;
+
+  document.getElementById('totalPrice').textContent = total.toLocaleString();
+  document.getElementById('priceSqm').textContent = totalArea.toFixed(2) + ' ㎡';
+  document.getElementById('priceUnit').textContent = '¥' + pricePerSqm + '/㎡';
+  document.getElementById('priceProfile').textContent = seriesLabel[series] || series;
+  document.getElementById('priceInstall').textContent = install === 'yes' ? '含安装' : '不含';
+}
+
+function changeNum(field, delta) {
+  const id = field === 'width' ? 'calcWidth' : field === 'height' ? 'calcHeight' : 'calcCount';
+  const el = document.getElementById(id);
+  const min = parseInt(el.min) || 1;
+  const max = parseInt(el.max) || 999;
+  el.value = Math.max(min, Math.min(max, (parseInt(el.value)||0) + delta));
+  calcPrice();
+}
+
+function syncSlider(field) {
+  const sl = document.getElementById(field+'Slider');
+  const inp = document.getElementById('calc' + field.charAt(0).toUpperCase() + field.slice(1));
+  inp.value = sl.value;
+  calcPrice();
+}
+
+// ===== 预约表单 =====
+function initTimeSlots() {
+  const grid = document.getElementById('timeSlotGrid');
+  const now = new Date();
+  const slots = [];
+  const days = ['周日','周一','周二','周三','周四','周五','周六'];
+  const periods = ['上午 9-12时', '下午 14-17时', '下午 17-20时'];
+  for (let i=0; i<6; i++) {
+    const d = new Date(now);
+    d.setDate(now.getDate() + i + 1);
+    const m = d.getMonth()+1, dd = d.getDate();
+    const dayStr = days[d.getDay()];
+    periods.forEach(p => {
+      slots.push({ label: `${m}/${dd}`, day: dayStr, time: p });
+    });
+  }
+  // 仅展示9个（3×3）
+  grid.innerHTML = slots.slice(0,9).map(s=>`
+    <div class="time-chip" onclick="selectTimeChip(this)">
+      <span class="tc-date">${s.label}</span>
+      <span class="tc-day">${s.day}</span>
+      <span class="tc-time">${s.time.split(' ')[0]}</span>
+    </div>
+  `).join('');
+}
+
+function selectTimeChip(el) {
+  document.querySelectorAll('.time-chip').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function submitBooking() {
+  const name = document.getElementById('bookName').value.trim();
+  const phone = document.getElementById('bookPhone').value.trim();
+  const addr = document.getElementById('bookAddr').value.trim();
+  const type = document.getElementById('bookType').value;
+  const timeChip = document.querySelector('.time-chip.active');
+
+  if (!name) { showAlert('请填写您的姓名'); return; }
+  if (!/^1[3-9]\d{9}$/.test(phone)) { showAlert('请填写正确的手机号'); return; }
+  if (!addr) { showAlert('请填写上门地址'); return; }
+  if (!type) { showAlert('请选择需求类型'); return; }
+  if (!timeChip) { showAlert('请选择预约时间'); return; }
+
+  // 存储到localStorage
+  const records = JSON.parse(localStorage.getItem('bookings') || '[]');
+  records.push({ name, phone, addr, type, time: timeChip.innerText.replace(/\n/g,' '), remark: document.getElementById('bookRemark').value, ts: Date.now() });
+  localStorage.setItem('bookings', JSON.stringify(records));
+
+  showSuccessModal('🎉', '预约成功！', `${name}，我们已收到您的预约！\n专属设计师将在24小时内致电 ${phone} 确认上门时间。`);
+  // 清空表单
+  ['bookName','bookPhone','bookAddr','bookRemark'].forEach(id=>{ document.getElementById(id).value=''; });
+  document.getElementById('bookType').value='';
+  document.querySelectorAll('.time-chip').forEach(c=>c.classList.remove('active'));
+}
+
+// ===== 留资表单 =====
+function showLeadForm() {
+  document.getElementById('leadModal').classList.add('open');
+}
+function showLeadFormFromCalc() {
+  // 先把报价数据填入备注
+  const price = document.getElementById('totalPrice').textContent;
+  const profile = document.getElementById('priceProfile').textContent;
+  document.getElementById('leadRemark').value = `报价参考：¥${price}，型材：${profile}`;
+  showLeadForm();
+}
+function closeLeadModal(e) {
+  if (e.target === document.getElementById('leadModal')) document.getElementById('leadModal').classList.remove('open');
+}
+function submitLead() {
+  const name = document.getElementById('leadName').value.trim();
+  const phone = document.getElementById('leadPhone').value.trim();
+  const type = document.getElementById('leadType').value;
+
+  if (!name) { showAlert('请填写姓名'); return; }
+  if (!/^1[3-9]\d{9}$/.test(phone)) { showAlert('请填写正确的手机号'); return; }
+  if (!type) { showAlert('请选择需求类型'); return; }
+
+  const leads = JSON.parse(localStorage.getItem('leads') || '[]');
+  leads.push({ name, phone, type, remark: document.getElementById('leadRemark').value, ts: Date.now() });
+  localStorage.setItem('leads', JSON.stringify(leads));
+
+  document.getElementById('leadModal').classList.remove('open');
+  showSuccessModal('✅', '留资成功！', `${name}，我们已记录您的需求！\n专属顾问将在24小时内联系 ${phone}，为您提供个性化方案。`);
+  ['leadName','leadPhone','leadRemark'].forEach(id=>{ document.getElementById(id).value=''; });
+  document.getElementById('leadType').value='';
+}
+
+// ===== 工具函数 =====
+function showSuccessModal(icon, title, desc) {
+  document.getElementById('successIcon').textContent = icon;
+  document.getElementById('successTitle').textContent = title;
+  document.getElementById('successDesc').textContent = desc;
+  document.getElementById('successModal').classList.add('open');
+}
+function closeSuccess() {
+  document.getElementById('successModal').classList.remove('open');
+  showPage('home');
+}
+function showAlert(msg) {
+  // 简单toast
+  const toast = document.createElement('div');
+  toast.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.75);color:#fff;padding:12px 24px;border-radius:8px;font-size:14px;z-index:9999;pointer-events:none;';
+  toast.textContent = msg;
+  document.body.appendChild(toast);
+  setTimeout(()=>toast.remove(), 2000);
+}
+
+// ===== 初始化 =====
+window.addEventListener('DOMContentLoaded', ()=>{
+  // 隐藏加载屏
+  setTimeout(()=>{
+    const overlay = document.getElementById('loadingOverlay');
+    overlay.style.opacity = '0';
+    setTimeout(()=>overlay.style.display='none', 400);
+  }, 1600);
+
+  renderHomeProducts();
+  renderCases('homeCaseGrid', 4);
+  renderCases('allCaseGrid');
+  initProductsPage();
+  calcPrice();
+});
+</script>
 </body>
 </html>

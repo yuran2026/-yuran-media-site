@@ -1,0 +1,27 @@
+{
+  "name": "余然科技·门窗定制",
+  "short_name": "余然门窗",
+  "description": "专业门窗定制服务 | 断桥铝·系统窗·阳光房 | 免费上门量尺·在线报价",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#123570",
+  "theme_color": "#1a4d8c",
+  "orientation": "portrait-primary",
+  "lang": "zh-CN",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "shopping"],
+  "screenshots": []
+}
